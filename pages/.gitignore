@@ -1,0 +1,11 @@
+node_modules/
+.next/
+.env.local
+.env
+.vercel/
+out/
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store

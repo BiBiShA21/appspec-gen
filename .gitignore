@@ -1,0 +1,14 @@
+@"
+node_modules/
+.next/
+.env.local
+.env
+.vercel/
+out/
+.vscode/
+.idea/
+*.swp
+.DS_Store
+dist/
+build/
+"@ | Out-File -Encoding UTF8 .gitignore

@@ -1,0 +1,157 @@
+{
+  "evaluationPrompts": [
+    {
+      "id": "prompt_001",
+      "title": "Simple CRUD App",
+      "prompt": "Create a basic task management app where users can create, view, update and delete tasks. Each task should have a title, description, due date, and completion status. I need at least a task list view and a detail view.",
+      "expectedFeatures": [
+        "task_creation",
+        "task_listing",
+        "task_update",
+        "task_deletion",
+        "status_tracking"
+      ]
+    },
+    {
+      "id": "prompt_002",
+      "title": "E-commerce Product Catalog",
+      "prompt": "Build a product catalog for an e-commerce store. Show products with images, names, prices, descriptions, and inventory levels. Include filtering by category and price range. Let users add products to a shopping cart and view the cart.",
+      "expectedFeatures": [
+        "product_listing",
+        "product_filtering",
+        "shopping_cart",
+        "inventory_tracking",
+        "price_display"
+      ]
+    },
+    {
+      "id": "prompt_003",
+      "title": "Employee Directory with Search",
+      "prompt": "Create an employee directory app for internal use. Show employee photos, names, departments, contact info, and reporting relationships. Include search and filtering by department. Integrate with Slack to send messages to employees.",
+      "expectedFeatures": [
+        "employee_listing",
+        "search_functionality",
+        "filtering_by_department",
+        "slack_integration",
+        "employee_hierarchy"
+      ],
+      "expectedIntegrations": ["slack"]
+    },
+    {
+      "id": "prompt_004",
+      "title": "Invoice Management with Payments",
+      "prompt": "Build an invoice management system. Create invoices with line items, totals, and payment status. Support multiple payment methods via Stripe. Send email confirmations when invoices are paid. Track payment history.",
+      "expectedFeatures": [
+        "invoice_creation",
+        "payment_tracking",
+        "line_items",
+        "email_notifications",
+        "payment_history"
+      ],
+      "expectedIntegrations": ["stripe", "gmail"]
+    },
+    {
+      "id": "prompt_005",
+      "title": "Project Management Dashboard",
+      "prompt": "Create a project dashboard showing team members, tasks, milestones, and progress. Display tasks in a kanban board with columns for to-do, in-progress, and done. Sync project data to Notion and send Slack notifications when tasks change status.",
+      "expectedFeatures": [
+        "kanban_board",
+        "team_members",
+        "progress_tracking",
+        "milestone_tracking",
+        "status_notifications"
+      ],
+      "expectedIntegrations": ["slack", "notion"]
+    },
+    {
+      "id": "prompt_006",
+      "title": "Customer Support Ticket System",
+      "prompt": "Build a support ticket system where customers can submit issues, track status, and receive updates via email. Support staff can assign tickets, add notes, and close resolved tickets. Track ticket priority and resolution time.",
+      "expectedFeatures": [
+        "ticket_creation",
+        "status_tracking",
+        "priority_levels",
+        "staff_assignment",
+        "email_updates"
+      ],
+      "expectedIntegrations": ["gmail"]
+    },
+    {
+      "id": "prompt_007",
+      "title": "Blog with Comments",
+      "prompt": "Create a blog platform where admins can publish articles with a title, content, featured image, and publish date. Readers can view articles, leave comments, and like posts. Show a list of recent and popular articles on the homepage.",
+      "expectedFeatures": [
+        "article_publishing",
+        "comment_system",
+        "like_functionality",
+        "image_support",
+        "article_discovery"
+      ]
+    },
+    {
+      "id": "prompt_008",
+      "title": "Appointment Booking System",
+      "prompt": "Build a booking system for services like haircuts or consultations. Show available time slots, let users book appointments, and send confirmation emails. Admins can manage availability and view all bookings in a calendar.",
+      "expectedFeatures": [
+        "time_slot_management",
+        "booking_creation",
+        "confirmation_emails",
+        "calendar_view",
+        "availability_management"
+      ],
+      "expectedIntegrations": ["gmail"]
+    },
+    {
+      "id": "prompt_009",
+      "title": "Lead Management with CRM Integration",
+      "prompt": "Create a CRM for managing sales leads. Track lead source, status, contact info, and deal value. Automatically create Airtable records when new leads are added. Send Slack notifications when a deal closes. Support pipeline stages from prospect to closed.",
+      "expectedFeatures": [
+        "lead_tracking",
+        "pipeline_stages",
+        "deal_value_tracking",
+        "contact_management",
+        "notification_system"
+      ],
+      "expectedIntegrations": ["slack", "airtable"]
+    },
+    {
+      "id": "prompt_010",
+      "title": "Inventory Management App",
+      "prompt": "Build an inventory system for a warehouse. Track stock levels, product names, SKUs, and locations. Show low-stock alerts. Integrate with Gmail to send alerts when inventory is low. Support inventory adjustments and movement history.",
+      "expectedFeatures": [
+        "stock_tracking",
+        "low_stock_alerts",
+        "product_information",
+        "movement_history",
+        "sku_management"
+      ],
+      "expectedIntegrations": ["gmail"]
+    },
+    {
+      "id": "prompt_011",
+      "title": "Event Registration Platform",
+      "prompt": "Create an event management app. Show event details, dates, locations, and attendee lists. Let users register for events and cancel registrations. Send confirmation emails and send Slack notifications to organizers when someone registers.",
+      "expectedFeatures": [
+        "event_creation",
+        "registration_system",
+        "attendee_tracking",
+        "cancellation_support",
+        "notification_system"
+      ],
+      "expectedIntegrations": ["gmail", "slack"]
+    },
+    {
+      "id": "prompt_012",
+      "title": "Time Tracking and Expense Management",
+      "prompt": "Build a time tracking app for freelancers and consultants. Track hours worked by project, log daily expenses, and generate invoices. Integrate with Stripe for payment collection. Use Airtable to sync timesheet records. Send monthly reports via email.",
+      "expectedFeatures": [
+        "time_tracking",
+        "project_assignment",
+        "expense_logging",
+        "invoice_generation",
+        "reporting"
+      ],
+      "expectedIntegrations": ["stripe", "airtable", "gmail"]
+    }
+  ]
+}

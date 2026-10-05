@@ -35,7 +35,7 @@ export type IntegrationDefinition = z.infer<typeof IntegrationDefinitionSchema>;
 
 // ============= INTEGRATION DEFINITIONS =============
 
-export const INTEGRATIONS: Record<string, IntegrationDefinition> = {
+export const INTEGRATIONS: Readonly<Record<string, IntegrationDefinition>> = Object.freeze({
   slack: {
     id: "slack",
     name: "Slack",
@@ -216,12 +216,15 @@ export const INTEGRATIONS: Record<string, IntegrationDefinition> = {
       { name: "api_key", type: "string" },
     ],
   },
-};
+});
 
 // ============= REGISTRY UTILITIES =============
 
 export function getIntegration(id: string): IntegrationDefinition | null {
-  return INTEGRATIONS[id] || null;
+  if (typeof id === "string" && Object.prototype.hasOwnProperty.call(INTEGRATIONS, id)) {
+    return INTEGRATIONS[id];
+  }
+  return null;
 }
 
 export function getAllIntegrations(): IntegrationDefinition[] {
@@ -238,6 +241,10 @@ export function validateIntegrationConfig(
   integrationId: string,
   config: Record<string, unknown>
 ): { valid: boolean; errors: string[] } {
+  if (!config || typeof config !== "object") {
+    return { valid: false, errors: ["Invalid configuration provided"] };
+  }
+
   const integration = getIntegration(integrationId);
 
   if (!integration) {
@@ -246,29 +253,33 @@ export function validateIntegrationConfig(
 
   const errors: string[] = [];
 
-  // Check required fields
+  // Check required fields securely without prototype traversal
   for (const field of integration.requiredFields) {
-    if (!(field.name in config)) {
+    if (
+      !Object.prototype.hasOwnProperty.call(config, field.name) ||
+      config[field.name] === undefined ||
+      config[field.name] === null
+    ) {
       errors.push(`Missing required field: ${field.name} (${field.type})`);
     }
   }
 
   // Validate triggers (if provided)
-  if ("triggers" in config && Array.isArray(config.triggers)) {
+  if (Object.prototype.hasOwnProperty.call(config, "triggers") && Array.isArray(config.triggers)) {
     const validTriggers = new Set(integration.triggers.map((t) => t.id));
     for (const trigger of config.triggers) {
-      if (!validTriggers.has(trigger)) {
-        errors.push(`Invalid trigger: "${trigger}". Valid triggers: ${[...validTriggers].join(", ")}`);
+      if (typeof trigger !== "string" || !validTriggers.has(trigger)) {
+        errors.push(`Invalid trigger: "${String(trigger)}". Valid triggers: ${[...validTriggers].join(", ")}`);
       }
     }
   }
 
   // Validate actions (if provided)
-  if ("actions" in config && Array.isArray(config.actions)) {
+  if (Object.prototype.hasOwnProperty.call(config, "actions") && Array.isArray(config.actions)) {
     const validActions = new Set(integration.actions.map((a) => a.id));
     for (const action of config.actions) {
-      if (!validActions.has(action)) {
-        errors.push(`Invalid action: "${action}". Valid actions: ${[...validActions].join(", ")}`);
+      if (typeof action !== "string" || !validActions.has(action)) {
+        errors.push(`Invalid action: "${String(action)}". Valid actions: ${[...validActions].join(", ")}`);
       }
     }
   }
